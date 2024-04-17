@@ -27,56 +27,7 @@
 img {
   display: block;
   width: 100%;
-}
-
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-
-.gallery-item {
-  flex-basis: calc((100% - (24px*2))/3);
-  border: 1px solid rgba(128, 128, 128, 1);
-}
-
-.info {
-  display: flex;
-  gap: 28px;
-}
-
-.search-form {
-  display: flex;
-  justify-content: center;
-  margin-top: 36px;
-  margin-bottom: 32px;
-}
-
-input {
-  max-width: 272px;
-  height: 40px;
-  border: 1px solid rgba(128, 128, 128, 1);
-  border-radius: 8px;
-  padding: 8px 16px;
-  margin-right: 8px;
-
-  color: rgba(46, 47, 66, 1);
-  font-family: inherit;
-  outline: none;
-}
-
-input::placeholder {
-  font-family: Montserrat;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.04em;
-  color: currentColor;
-}
-
-input:hover,
-input:focus {
-  border: 1px solid rgba(0, 0, 0, 1);
+  height: auto;
 }
 
 button {
@@ -95,9 +46,66 @@ button {
   cursor: pointer;
 }
 
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+  margin-bottom: 32px;
+}
+
+.search-input {
+  flex: 1;
+  margin-right: 8px;
+  padding: 8px 16px;
+  border: 1px solid rgba(128, 128, 128, 1);
+  border-radius: 8px;
+  max-width: 272px;
+
+  color: rgba(46, 47, 66, 1);
+  font-family: inherit;
+  outline: none;
+}
+
+.search-input:hover,
+.search-input:focus {
+  border: 1px solid rgba(0, 0, 0, 1);
+}
+
+input::placeholder {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.04em;
+  color: currentColor;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, calc((100% - (24px*2))/3));
+  gap: 24px;
+}
+
+.gallery-item {
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(128, 128, 128, 1);
+  border-radius: 5px;
+}
+
+.info {
+  display: flex;
+  gap: 28px;
+  padding: 10px;
+}
+
 .load-more-button {
   margin-top: 20px;
   margin-right: auto;
   margin-left: auto;
-
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
 }
+

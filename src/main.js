@@ -13,6 +13,14 @@ function toggleLoadMoreButton(imagesCount) {
   }
 }
 
+function scrollToNextImages() {
+  const galleryItem = document.querySelector('.gallery-item');
+  if (galleryItem) {
+    const itemHeight = galleryItem.getBoundingClientRect().height;
+    window.scrollBy({ top: 2 * itemHeight, behavior: 'smooth' });
+  }
+}
+
 // Main
 
 const searchForm = document.querySelector('.search-form');
@@ -91,17 +99,17 @@ loadMoreButton.addEventListener('click', async () => {
   page++;
   
   try {
-    const images = await getImages(currentKeyword, currentPage);
+    const images = await getImages(currentKeyword, page);
 
     const gallery = document.querySelector('.gallery');
     const galleryMarkup = createGalleryMarkup(images);
     gallery.innerHTML += galleryMarkup;
 
     const totalHits = images.totalHits; 
-    toggleLoadMoreButton(images.length, totalHits > currentPage * PER_PAGE);
+    toggleLoadMoreButton(images.length, totalHits > page * PER_PAGE);
 
-    if (currentPage * PER_PAGE >= totalHits) {
-      showMessage('We\'re sorry, but you\'ve reached the end of search results.');
+    if (page * PER_PAGE >= totalHits) {
+      showMessage('We are sorry, but you have reached the end of search results.');
       loadMoreButton.style.display = 'none';
     } else {scrollToNextImages();}
 
