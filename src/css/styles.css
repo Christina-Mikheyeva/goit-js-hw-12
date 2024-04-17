@@ -94,3 +94,10 @@ button {
   letter-spacing: inherit;
   cursor: pointer;
 }
+
+.load-more-button {
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
