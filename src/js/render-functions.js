@@ -51,8 +51,8 @@ export function hideLoader() {
 
 export function showMessage(message) {
   iziToast.show({
-    title: 'Пошук зображень',
-    message,
+    title: "Error",
+    message: message,
     position: 'topRight',
   });
 }
@@ -60,9 +60,10 @@ export function showMessage(message) {
 export function toggleLoadMoreButton(imagesCount) {
   const loadMoreButton = document.querySelector('.load-more-button');
   if (imagesCount > 0) {
-    loadMoreButton.style.display = 'block';
+    loadMoreButton.style.display = "block";
   } else {
-    loadMoreButton.style.display = 'none';
+    loadMoreButton.style.display = "none";
+    showMessage("We're sorry, but you've reached the end of search results.");
   }
 }
 

@@ -7,7 +7,9 @@ import iziToast from "izitoast";
 
 const searchForm = document.querySelector('.search-form');
 const searchInput = document.querySelector('.search-input');
+const loadMoreButton = document.querySelector('.load-more-button');
 
+loadMoreButton.style.display = "none";
 let currentKeyword = "";
 
 searchForm.addEventListener('submit', async (event) => {
@@ -16,12 +18,9 @@ searchForm.addEventListener('submit', async (event) => {
   const keyword = searchInput.value.trim();
 
   if (keyword === "") {
-    return iziToast.error({
-    title: 'Error',
-    message: 'Start typing in',
-});
+    showMessage("Start typing in")
+    return
   }
-
 
   currentKeyword = keyword;
   let page = 1;
@@ -35,7 +34,7 @@ searchForm.addEventListener('submit', async (event) => {
   
   try {
     const images = await getImages(currentKeyword, page);
-
+   
     if (images.length === 0) {
       showMessage("Sorry, there are no images matching your search query. Please try again!");
       return;
@@ -53,13 +52,9 @@ searchForm.addEventListener('submit', async (event) => {
 
 // Add an event and more pictures
 
-const loadMoreButton = document.querySelector('.load-more-button');
-
 page = page + 1; 
   
 loadMoreButton.addEventListener('click', async () => {
- 
-  
   try {
     const images = await getImages(currentKeyword, page);
 
@@ -101,4 +96,5 @@ loadMoreButton.addEventListener('click', async () => {
 });
   
 });
+
 
