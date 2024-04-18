@@ -50,7 +50,7 @@ export function hideLoader() {
 }
 
 export function showMessage(message) {
-  iziToast.show({
+  iziToast.error({
     title: "Error",
     message: message,
     position: 'topRight',

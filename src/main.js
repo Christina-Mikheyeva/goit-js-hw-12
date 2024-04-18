@@ -36,6 +36,7 @@ searchForm.addEventListener('submit', async (event) => {
     const images = await getImages(currentKeyword, page);
    
     if (images.length === 0) {
+      loadMoreButton.style.display = "none";
       showMessage("Sorry, there are no images matching your search query. Please try again!");
       return;
     }
@@ -86,7 +87,7 @@ loadMoreButton.addEventListener('click', async () => {
     toggleLoadMoreButton(images.length, totalHits > page * PER_PAGE);
 
     if (page * PER_PAGE >= totalHits) {
-      showMessage('We are sorry, but you have reached the end of search results.');
+      showMessage("We are sorry, but you have reached the end of search results.");
       loadMoreButton.style.display = 'none';
     } else {scrollToNextImages();}
 
