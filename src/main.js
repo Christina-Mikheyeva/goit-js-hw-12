@@ -1,25 +1,7 @@
 // Imports
-import { showLoader, hideLoader, createGalleryMarkup, showMessage } from "./js/render-functions.js";
+import { showLoader, hideLoader, createGalleryMarkup, showMessage, toggleLoadMoreButton, scrollToNextImages } from "./js/render-functions.js";
 import { getImages } from "./js/pixabay-api.js";
 import iziToast from "izitoast";
-
-// Functions
-function toggleLoadMoreButton(imagesCount) {
-  const loadMoreButton = document.querySelector('.load-more-button');
-  if (imagesCount > 0) {
-    loadMoreButton.style.display = 'block';
-  } else {
-    loadMoreButton.style.display = 'none';
-  }
-}
-
-function scrollToNextImages() {
-  const galleryItem = document.querySelector('.gallery-item');
-  if (galleryItem) {
-    const itemHeight = galleryItem.getBoundingClientRect().height;
-    window.scrollBy({ top: 2 * itemHeight, behavior: 'smooth' });
-  }
-}
 
 // Main
 

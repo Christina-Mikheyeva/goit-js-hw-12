@@ -40,10 +40,13 @@ export function hideLoader() {
     </div>
   `).join('');
 
-  document.querySelector('.gallery').innerHTML = galleryMarkup;
+  const gallery = document.querySelector('.gallery');
+  gallery.innerHTML = galleryMarkup;
 
+  // Initialize SimpleLightbox only once (assuming a single instance is needed)
   const lightbox = new SimpleLightbox('.lightbox');
-  lightbox.refresh();
+
+  return galleryMarkup;
 }
 
 export function showMessage(message) {
@@ -52,4 +55,21 @@ export function showMessage(message) {
     message,
     position: 'topRight',
   });
+}
+
+export function toggleLoadMoreButton(imagesCount) {
+  const loadMoreButton = document.querySelector('.load-more-button');
+  if (imagesCount > 0) {
+    loadMoreButton.style.display = 'block';
+  } else {
+    loadMoreButton.style.display = 'none';
+  }
+}
+
+export function scrollToNextImages() {
+  const galleryItem = document.querySelector('.gallery-item');
+  if (galleryItem) {
+    const itemHeight = galleryItem.getBoundingClientRect().height;
+    window.scrollBy({ top: 2 * itemHeight, behavior: 'smooth' });
+  }
 }
