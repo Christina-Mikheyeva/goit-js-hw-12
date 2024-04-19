@@ -14,7 +14,8 @@ let page = 1;
 
 // Event listener for load more button 
 loadMoreButton.addEventListener('click', async () => {
-const PER_PAGE = 15; 
+  const PER_PAGE = 15; 
+
   try {
     const images = await getImages(currentKeyword, page);
 
@@ -33,8 +34,8 @@ if (page * PER_PAGE >= totalHits) {
   } catch (error) {
     console.error('Error fetching more images:', error);
   }
+    page++;
 
-  page++;
 });
 
 searchForm.addEventListener('submit', async (event) => {
@@ -48,7 +49,7 @@ searchForm.addEventListener('submit', async (event) => {
   }
 
   currentKeyword = keyword;
-  page = 1; 
+
 
   // Loader and clear 
 
@@ -74,5 +75,6 @@ searchForm.addEventListener('submit', async (event) => {
       hideLoader();
     } catch (error) {
       console.error('Error fetching images:', error);
-    }
+  }
+  page++;
 });
