@@ -14,21 +14,22 @@ let page = 1;
 
 // Event listener for load more button 
 loadMoreButton.addEventListener('click', async () => {
-  const PER_PAGE = 15; 
+  const PER_PAGE = 15;
+  page++;
 
   try {
     loadMoreButton.style.display = 'none';
     console.log('New Keyword:', currentKeyword, 'Page:', page); 
+    
     const images = await getImages(currentKeyword, page);
-
+    const totalHits = images.totalHits;
     const gallery = document.querySelector('.gallery');
     const galleryMarkup = createGalleryMarkup(images);
     gallery.innerHTML += galleryMarkup;
 
-    const totalHits = images.totalHits;
     toggleLoadMoreButton(images.length, totalHits > page * PER_PAGE);
 
-    if (!page * PER_PAGE >= totalHits) {
+    if (page * PER_PAGE >= totalHits) {
       showMessage("We are sorry, but you have reached the end of search results.");
       loadMoreButton.style.display = 'none';
     } else { scrollToNextImages(); }
@@ -36,13 +37,13 @@ loadMoreButton.addEventListener('click', async () => {
   } catch (error) {
     console.error('Error fetching more images:', error);
   }
-    page++;
 });
 
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const keyword = searchInput.value.trim();
+  page = 1;
 
   if (keyword === "") {
     showMessage("Start typing in")
@@ -58,7 +59,7 @@ searchForm.addEventListener('submit', async (event) => {
   document.querySelector('.gallery').innerHTML = '';
    
   // Reset for new search
-  
+
   try {
     const images = await getImages(currentKeyword, page);
 
@@ -78,5 +79,4 @@ searchForm.addEventListener('submit', async (event) => {
     } catch (error) {
       console.error('Error fetching images:', error);
   }
-  page++;
 });
