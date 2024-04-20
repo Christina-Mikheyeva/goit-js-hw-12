@@ -10,6 +10,7 @@ const loadMoreButton = document.querySelector('.load-more-button');
 
 loadMoreButton.style.display = "none";
 let currentKeyword = "";
+const PER_PAGE = 15;
 let page = 1;
 
 // Event listener for load more button 
@@ -32,7 +33,7 @@ loadMoreButton.addEventListener('click', async () => {
     if (page * PER_PAGE >= totalHits) {
       showMessage("We are sorry, but you have reached the end of search results.");
       loadMoreButton.style.display = 'none';
-    } else { scrollToNextImages(); }
+    } else { scrollToNextImages() }
 
   } catch (error) {
     console.error('Error fetching more images:', error);
@@ -64,7 +65,7 @@ searchForm.addEventListener('submit', async (event) => {
   try {
     const images = await getImages(currentKeyword, page);
     const arrayHits = images.hits;
-    console.log("images", images);
+    const totalHits = images.totalHits;
 
     if (arrayHits.length === 0) {
       loadMoreButton.style.display = "none";
@@ -74,12 +75,18 @@ searchForm.addEventListener('submit', async (event) => {
 
       // Create gallery markup and hide/show button
       createGalleryMarkup(arrayHits);
-      toggleLoadMoreButton(arrayHits.length);
+    toggleLoadMoreButton(arrayHits.length);
+    
+        if (page * PER_PAGE >= totalHits) {
+      showMessage("We are sorry, but you have reached the end of search results.");
+      loadMoreButton.style.display = 'none';
+    } 
     
       // Hide loader
       hideLoader();
 
     } catch (error) {
       console.error('Error fetching images:', error);
+    }
   }
-});
+);
