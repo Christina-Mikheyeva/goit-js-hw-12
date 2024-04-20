@@ -13,8 +13,8 @@ export function hideLoader() {
   loader.classList.remove('active');
 }
 
- export function createGalleryMarkup(images) {
-  const galleryMarkup = images.map(image => `
+ export function createGalleryMarkup(arr) {
+  const galleryMarkup = arr.map(image => `
     <div class="gallery-item">
       <a href="${image.largeImageURL}" class="lightbox">
         <img src="${image.webformatURL}" alt="${image.tags}" />
