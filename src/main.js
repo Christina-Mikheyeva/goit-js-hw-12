@@ -74,7 +74,7 @@ searchForm.addEventListener('submit', async (event) => {
     }
 
       // Create gallery markup and hide/show button
-      createGalleryMarkup(arrayHits);
+    createGalleryMarkup(arrayHits);
     toggleLoadMoreButton(arrayHits.length);
     
         if (page * PER_PAGE >= totalHits) {

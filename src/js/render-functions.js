@@ -42,11 +42,12 @@ export function hideLoader() {
 
   const gallery = document.querySelector('.gallery');
   gallery.innerHTML = galleryMarkup;
-
-  // Initialize SimpleLightbox only once (assuming a single instance is needed)
-  const lightbox = new SimpleLightbox('.lightbox');
-
-  return galleryMarkup;
+  
+     // Initialize SimpleLightbox for each image 
+   const lightboxImages = document.querySelectorAll('.lightbox');
+   lightboxImages.forEach(image => new SimpleLightbox({ elements: image }));
+   
+   return galleryMarkup;
 }
 
 export function showMessage(message) {
