@@ -26,8 +26,7 @@ loadMoreButton.addEventListener('click', async () => {
     const totalHits = images.totalHits;
     const gallery = document.querySelector('.gallery');
     const galleryMarkup = createGalleryMarkup(arrayHits);
-    gallery.innerHTML += galleryMarkup;
-
+""
     toggleLoadMoreButton(arrayHits.length, totalHits > page * PER_PAGE);
 
     if (page * PER_PAGE >= totalHits) {

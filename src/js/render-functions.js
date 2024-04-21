@@ -47,7 +47,7 @@ export function hideLoader() {
   `).join('');
 
   const gallery = document.querySelector('.gallery');
-  gallery.innerHTML = galleryMarkup;
+  gallery.insertAdjacentHTML("beforeend", galleryMarkup);
   
  // Initialize SimpleLightbox for each image 
   
