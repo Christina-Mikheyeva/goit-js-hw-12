@@ -5,6 +5,12 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 const loader = document.querySelector('.loader');
 
+ // Initialize SimpleLightbox for each image 
+const lightbox = new SimpleLightbox(".gallery a", {
+  captionDelay: 250,
+  captionDelay: "alt",
+});
+
 export function showLoader() {
   loader.classList.add('active');
 }
@@ -43,11 +49,11 @@ export function hideLoader() {
   const gallery = document.querySelector('.gallery');
   gallery.innerHTML = galleryMarkup;
   
-     // Initialize SimpleLightbox for each image 
-   const lightboxImages = document.querySelectorAll('.lightbox');
-   lightboxImages.forEach(image => new SimpleLightbox({ elements: image }));
-   
-   return galleryMarkup;
+ // Initialize SimpleLightbox for each image 
+  
+   lightbox.refresh();
+
+  return galleryMarkup;
 }
 
 export function showMessage(message) {
